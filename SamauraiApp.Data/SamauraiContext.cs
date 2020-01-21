@@ -8,6 +8,7 @@ namespace SamauraiApp.Data
         public DbSet<Samurai> Samurais { get; set; }
         public DbSet<Quote> Quotes { get; set; }
         public DbSet<Clan> Clans { get; set; }
+        public DbSet<Battle> Battles { get; set; }
         private const string _dbConnectionString = "Server=DESKTOP-PHMAO3P\\SQLSERVER17;database=efcore31samrui;Trusted_connection=true;pooling=true;MultipleActiveResultSets=True";
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -19,6 +20,7 @@ namespace SamauraiApp.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<SamuraiBattle>().HasKey(s => new { s.BattleId, s.SamuraiId });
+            modelBuilder.Entity<Horse>().ToTable("Horses");
             base.OnModelCreating(modelBuilder);
         }
     }
